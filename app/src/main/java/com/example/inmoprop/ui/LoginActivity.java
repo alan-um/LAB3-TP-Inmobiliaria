@@ -1,6 +1,5 @@
 package com.example.inmoprop.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.inmoprop.R;
 import com.example.inmoprop.databinding.ActivityLoginBinding;
-import com.example.inmoprop.request.ApiClient;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,15 +35,14 @@ public class LoginActivity extends AppCompatActivity {
         b.etPass.setText("DEEKQW");
 
         //Observe
-        /*vm.getError().observe(this, e->{
-            b.tvError.setText(e);
-        });*/
-        vm.getError().observe(this, b.tvError::setText);//Forma más corta!! Usando ::
+        vm.getErrUsuario().observe(this, b.tvErrUsuario::setText);//Forma más corta!! Usando ::
+        vm.getErrPass().observe(this, b.tvErrPass::setText);
+        vm.getErrLogin().observe(this, b.tvErrLogin::setText);
 
         //Listener
         b.btLogin.setOnClickListener(v -> {
-            vm.ingresar(b.etUsuario.getText().toString(), b.etPass.getText().toString());
-            //vm.ingresarHARDCODE(b.etUsuario.getText().toString(), b.etPass.getText().toString());
+            vm.ingresar(b.etUsuario.getText().toString().trim(), b.etPass.getText().toString());
+            //vm.ingresarHARDCODE(b.etUsuario.getText().toString().trim(), b.etPass.getText().toString());
         });
     }
 }

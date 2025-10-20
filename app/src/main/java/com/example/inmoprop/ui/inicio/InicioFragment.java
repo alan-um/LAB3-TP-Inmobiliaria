@@ -4,14 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.inmoprop.R;
 import com.example.inmoprop.databinding.FragmentInicioBinding;
-import com.example.inmoprop.request.ApiClient;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class InicioFragment extends Fragment {
     private FragmentInicioBinding b;
@@ -23,11 +24,22 @@ public class InicioFragment extends Fragment {
         b = FragmentInicioBinding.inflate(inflater, container, false);
         View root = b.getRoot();
 
-        //final TextView textView = b.textHome;
-        vm.getText().observe(getViewLifecycleOwner(), b.textInicio::setText);
+        //Observe
+        vm.getNombre().observe(getViewLifecycleOwner(), b.tvNombre::setText);
+        vm.getDireccion().observe(getViewLifecycleOwner(), b.tvDireccion::setText);
+        vm.getToast().observe(getViewLifecycleOwner(), s ->{
+            Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+        });
 
-        vm.buscarPropietario();
-        //vm.buscarPropietarioHARDCODE();
+        vm.getMapaActual().observe(getViewLifecycleOwner(),mapaActual -> {
+            SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapa);
+            supportMapFragment.getMapAsync(mapaActual);
+        });
+
+        //Other
+        vm.saludar();
+        vm.cargarMapa();
+        //vm.saludarHARDCODE();
         return root;
     }
 

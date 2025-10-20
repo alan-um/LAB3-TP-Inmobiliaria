@@ -14,7 +14,11 @@
         android:id="@+id/nav_perfil"
         android:name="com.example.inmoprop.ui.perfil.PerfilFragment"
         android:label="@string/perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_nav_perfil_to_cambiarPassFragment"
+            app:destination="@id/cambiarPassFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_inmuebles"
         android:name="com.example.inmoprop.ui.inmuebles.InmueblesFragment"
@@ -35,4 +39,13 @@
         android:name="com.example.inmoprop.ui.logout.LogoutFragment"
         android:label="@string/logout"
         tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/cambiarPassFragment"
+        android:name="com.example.inmoprop.ui.perfil.CambiarPassFragment"
+        android:label="Cambiar contraseña"
+        tools:layout="@layout/fragment_cambiar_pass" >
+        <action
+            android:id="@+id/action_cambiarPassFragment_to_nav_perfil"
+            app:destination="@id/nav_perfil" />
+    </fragment>
 </navigation>
