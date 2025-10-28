@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="botonPrimario" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">#6F3C25</item>
+    </style>
+    <style name="botonSecundario" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">#E7C492</item>
+    </style>
+</resources>

@@ -119,7 +119,7 @@ public class PerfilViewModel extends AndroidViewModel {
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
                 if(response.isSuccessful()){
                     Propietario p = response.body();
-                    mPropietario.setValue(p);
+                    mPropietario.postValue(p);
                 }else{
                     toast.postValue("No se ha encontrado el usuario");
                 }

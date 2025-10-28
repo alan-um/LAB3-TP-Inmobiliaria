@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.inmuebles.DetalleInmuebleFragment">
+
+        <TextView
+            android:id="@+id/tvDireccionInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Dirección:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrImgInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrLongitudInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Longitud Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvErrLatitudInmueble"
+            app:layout_constraintTop_toBottomOf="@+id/etLongitudInmueble" />
+
+        <TextView
+            android:id="@+id/tvLatitudInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Latitud:"
+            app:layout_constraintEnd_toStartOf="@+id/tvLongitudInmueble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrPrecioInmueble" />
+
+        <EditText
+            android:id="@+id/etLongitudInmueble"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Longitud Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/etLatitudInmueble"
+            app:layout_constraintTop_toBottomOf="@+id/tvLongitudInmueble" />
+
+        <TextView
+            android:id="@+id/tvLongitudInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Longitud:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvLatitudInmueble"
+            app:layout_constraintTop_toTopOf="@+id/tvLatitudInmueble" />
+
+        <Button
+            android:id="@+id/btGuardarInmueble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Guardar"
+            app:layout_constraintEnd_toStartOf="@+id/btCancelarInmueble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbDisponibleInmueble" />
+
+        <Button
+            android:id="@+id/btCancelarInmueble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:text="Cancelar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btGuardarInmueble"
+            app:layout_constraintTop_toBottomOf="@+id/cbDisponibleInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrLatitudInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:text="Latitud Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/tvErrLongitudInmueble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLatitudInmueble" />
+
+        <EditText
+            android:id="@+id/etLatitudInmueble"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Latitud Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toStartOf="@+id/etLongitudInmueble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLatitudInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrDireccionInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="Direccion Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etDireccionInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrImgInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="Imagen Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btAgregarImagen" />
+
+        <TextView
+            android:id="@+id/tvUsoInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Uso:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrTipoInmueble" />
+
+        <EditText
+            android:id="@+id/etUsoInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Uso Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUsoInmueble" />
+
+        <EditText
+            android:id="@+id/etSuperficieInmueble"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Superficie Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toStartOf="@+id/etAmbientesInmueble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSuperficieInmueble" />
+
+        <EditText
+            android:id="@+id/etAmbientesInmueble"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Ambientes Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/etSuperficieInmueble"
+            app:layout_constraintTop_toBottomOf="@+id/tvAmbientesInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrSuperficieInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:text="Superficie Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/tvErrAmbientesInmueble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSuperficieInmueble" />
+
+        <TextView
+            android:id="@+id/tvTipoInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Tipo:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrDireccionInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrPrecioInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="Precio Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPrecioInmueble" />
+
+        <TextView
+            android:id="@+id/tvPrecioInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Precio:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrSuperficieInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrTipoInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="Tipo Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etTipoInmueble" />
+
+        <TextView
+            android:id="@+id/tvSuperficieInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Superficie:"
+            app:layout_constraintEnd_toStartOf="@+id/tvAmbientesInmueble"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrUsoInmueble" />
+
+        <TextView
+            android:id="@+id/tvAmbientesInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Ambientes:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvSuperficieInmueble"
+            app:layout_constraintTop_toTopOf="@+id/tvSuperficieInmueble" />
+
+        <EditText
+            android:id="@+id/etDireccionInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Direccion Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDireccionInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrUsoInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="Uso Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etUsoInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrAmbientesInmueble"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Ambientes Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvErrSuperficieInmueble"
+            app:layout_constraintTop_toBottomOf="@+id/etAmbientesInmueble" />
+
+        <EditText
+            android:id="@+id/etPrecioInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Precio Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPrecioInmueble" />
+
+        <EditText
+            android:id="@+id/etTipoInmueble"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Tipo Inmueble"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTipoInmueble" />
+
+        <TextView
+            android:id="@+id/tvIdInmueble"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:text="Id. Inmueble:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etIdInmueble"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Id Inmueble"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIdInmueble" />
+
+        <TextView
+            android:id="@+id/tvErrIdInmueble"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:text="Id Errores"
+            android:textAlignment="textEnd"
+            android:textColor="#F44336"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etIdInmueble" />
+
+        <ImageView
+            android:id="@+id/imgInmueble"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrIdInmueble"
+            app:srcCompat="@drawable/logo_inmo_sierras" />
+
+        <CheckBox
+            android:id="@+id/cbDisponibleInmueble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:text="Disponible"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvErrLatitudInmueble" />
+
+        <Button
+            android:id="@+id/btAgregarImagen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="Agregar imagen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgInmueble" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
