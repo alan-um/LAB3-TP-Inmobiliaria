@@ -32,6 +32,8 @@ public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<String> mErrDni;
     private MutableLiveData<String> mErrTelefono;
     private MutableLiveData<String> mErrEmail;
+    private MutableLiveData<Boolean> enableBoton = new MutableLiveData<>(true);
+    private MutableLiveData<Integer> verProgress = new MutableLiveData<>(View.INVISIBLE);
 
 
     public PerfilViewModel(@NonNull Application application) {
@@ -64,8 +66,8 @@ public class PerfilViewModel extends AndroidViewModel {
         return mPropietario;
     }
     public LiveData<String> getToast() {
-        if (toast == null) {
-            toast = new MutableLiveData<>();
+        if(toast==null){
+            toast= new MutableLiveData<>();
         }
         return toast;
     }
@@ -104,6 +106,13 @@ public class PerfilViewModel extends AndroidViewModel {
             mErrEmail = new MutableLiveData<>("");
         }
         return mErrEmail;
+    }
+
+    public LiveData<Boolean> getEnableBoton() {
+        return enableBoton;
+    }
+    public LiveData<Integer> getVerProgress() {
+        return verProgress;
     }
 
     public void mostrarPropietario(){
@@ -172,6 +181,7 @@ public class PerfilViewModel extends AndroidViewModel {
     }
 
     private void callActualizar(Propietario p) {
+        inicioLlamado();
         String token = ApiClient.leerToken(context);
         ApiClient.InmobiliariaService api = ApiClient.getApi();
         Call<Propietario> llamada = api.actualizarPropietario("Bearer "+token, p);
@@ -186,12 +196,23 @@ public class PerfilViewModel extends AndroidViewModel {
                 } else {
                     toast.postValue("No se pudieron guardar los cambios.");
                 }
+                finLlamado();
             }
 
             @Override
             public void onFailure(Call<Propietario> call, Throwable t) {
                 toast.postValue("Error al intentar conectar con el servidor.");
+                finLlamado();
             }
         });
+    }
+
+    private void inicioLlamado(){
+        enableBoton.setValue(false);
+        verProgress.setValue(View.VISIBLE);
+    }
+    private void finLlamado(){
+        enableBoton.setValue(true);
+        verProgress.setValue(View.INVISIBLE);
     }
 }

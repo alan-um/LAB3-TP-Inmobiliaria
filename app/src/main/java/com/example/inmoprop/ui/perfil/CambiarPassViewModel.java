@@ -2,6 +2,7 @@ package com.example.inmoprop.ui.perfil;
 
 import android.app.Application;
 import android.content.Context;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -21,6 +22,9 @@ public class CambiarPassViewModel extends AndroidViewModel {
     private MutableLiveData<String> mErrActualPass;
     private MutableLiveData<String> mErrNuevaPass;
     private MutableLiveData<String> mErrRepitePass;
+
+    private MutableLiveData<Boolean> enableBoton = new MutableLiveData<>(true);
+    private MutableLiveData<Integer> verProgress = new MutableLiveData<>(View.INVISIBLE);
 
 
     public CambiarPassViewModel(@NonNull Application application) {
@@ -63,8 +67,16 @@ public class CambiarPassViewModel extends AndroidViewModel {
         return mErrRepitePass;
     }
 
-    public void cambiarPass(String actualPass, String nuevaPass, String repitePass) {
+    public LiveData<Boolean> getEnableBoton() {
+        return enableBoton;
+    }
+    public LiveData<Integer> getVerProgress() {
+        return verProgress;
+    }
+
+        public void cambiarPass(String actualPass, String nuevaPass, String repitePass) {
         if (validaPass(actualPass,nuevaPass,repitePass)) {//Si no hay errores llama a la API
+            inicioLlamado();
             String token = ApiClient.leerToken(context);
             ApiClient.InmobiliariaService api = ApiClient.getApi();
             Call<Void> llamada = api.cambiarPass("Bearer " + token, actualPass, nuevaPass);
@@ -77,14 +89,26 @@ public class CambiarPassViewModel extends AndroidViewModel {
                     } else {
                         mErrActualPass.postValue("La contraseña ingresada es incorrecta.");
                     }
+                    finLlamado();
                 }
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
                     toast.postValue("Error al intentar conectar con el servidor.");
+                    finLlamado();
                 }
             });
         }
+    }
+
+    private void inicioLlamado(){
+        enableBoton.setValue(false);
+        verProgress.setValue(View.VISIBLE);
+    }
+
+    private void finLlamado(){
+        enableBoton.setValue(true);
+        verProgress.setValue(View.INVISIBLE);
     }
 
     private boolean validaPass(String actualPass, String nuevaPass, String repitePass){

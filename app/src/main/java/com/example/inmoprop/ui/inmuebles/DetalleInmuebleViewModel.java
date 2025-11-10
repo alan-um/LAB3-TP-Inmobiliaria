@@ -16,10 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.inmoprop.models.Inmueble;
-import com.example.inmoprop.models.Propietario;
 import com.example.inmoprop.request.ApiClient;
 import com.example.inmoprop.util.Validacion;
 import com.google.gson.Gson;
@@ -27,7 +25,6 @@ import com.google.gson.Gson;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -121,10 +118,13 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
     public LiveData<Inmueble> getInmueble() {
         return mInmueble;
     }
-
     public LiveData<Uri> getUriImg() {
         return mUriImg;
     }
+
+    private MutableLiveData<Boolean> enableBoton = new MutableLiveData<>(true);
+    private MutableLiveData<Integer> verProgress = new MutableLiveData<>(View.INVISIBLE);
+
 
     public void inicio(Bundle args) {
         if (args == null) {
@@ -144,6 +144,13 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
         mEditar.setValue(false);
         mVerBtGuardar.setValue(View.GONE);
         mVerIdInmueble.setValue(View.VISIBLE);
+    }
+
+    public LiveData<Boolean> getEnableBoton() {
+        return enableBoton;
+    }
+    public LiveData<Integer> getVerProgress() {
+        return verProgress;
     }
 
     private void mostrarInmueble(Inmueble i) {
@@ -232,6 +239,13 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
         }
     }
 
+    public void recibirFoto(ActivityResult result) {
+        if (result.getResultCode() == RESULT_OK) {
+            Intent data = result.getData();
+            Uri uri = data.getData();
+            mUriImg.postValue(uri);
+        }
+    }
     private byte[] transformarImagen() {
         try {
             Uri uri = mUriImg.getValue();
@@ -247,6 +261,7 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
     }
 
     private void callCrear(Inmueble i) {
+        inicioLlamado();
         String token = ApiClient.leerToken(context);
         ApiClient.InmobiliariaService api = ApiClient.getApi();
 
@@ -269,20 +284,25 @@ public class DetalleInmuebleViewModel extends AndroidViewModel {
                 } else {
                     toast.postValue("No se pudieron guardar los cambios.");
                 }
+                finLlamado();
             }
 
             @Override
             public void onFailure(Call<Inmueble> call, Throwable t) {
                 toast.postValue("Error al intentar conectar con el servidor.");
+                finLlamado();
             }
         });
     }
 
-    public void recibirFoto(ActivityResult result) {
-        if (result.getResultCode() == RESULT_OK) {
-            Intent data = result.getData();
-            Uri uri = data.getData();
-            mUriImg.postValue(uri);
-        }
+
+    private void inicioLlamado(){
+        enableBoton.setValue(false);
+        verProgress.setValue(View.VISIBLE);
+    }
+
+    private void finLlamado(){
+        enableBoton.setValue(true);
+        verProgress.setValue(View.INVISIBLE);
     }
 }

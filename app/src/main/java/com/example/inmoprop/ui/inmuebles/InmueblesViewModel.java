@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.inmoprop.models.Inmueble;
-import com.example.inmoprop.models.Propietario;
 import com.example.inmoprop.request.ApiClient;
 
 import java.util.List;

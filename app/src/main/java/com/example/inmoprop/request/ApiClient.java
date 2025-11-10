@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.inmoprop.models.Contrato;
+import com.example.inmoprop.models.Pago;
 import com.example.inmoprop.models.Inmueble;
 import com.example.inmoprop.models.Propietario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 
 import java.util.List;
 
@@ -30,7 +30,15 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public class ApiClient {
-    public static final String URLBASE = "https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net/";
+    //Para usar solo con el Emulador
+    //public static final String URLBASE = "http://10.0.2.2:5196/";
+
+    //Para usar con Emulador y Teléfono, OJO!! REVISAR LA IP de la PC
+    //public static final String URLBASE = "http://192.168.1.166:5196/";
+    public static final String URLBASE = "http://10.204.208.199:5196/";
+
+    //Para usar la API de la ULP
+    //public static final String URLBASE = "https://inmobiliariaulp-amb5hwfqaraweyga.canadacentral-01.azurewebsites.net/";
     public static InmobiliariaService getApi(){
         Gson gson = new GsonBuilder().create();
         Retrofit retrofit = new Retrofit.Builder()
@@ -77,7 +85,7 @@ public class ApiClient {
         Call<Contrato> getContrato(@Header("Authorization") String token, @Path("id") int id);
 
         @GET("api/Pagos/contrato/{id}")
-        Call<List<Contrato>> obtenerPagos(@Header("Authorization") String token, @Path("id") int id);
+        Call<List<Pago>> obtenerPagos(@Header("Authorization") String token, @Path("id") int id);
     }
 
     //Métodos para leer y guardar el TOKEN en SharedPreferences
@@ -90,6 +98,12 @@ public class ApiClient {
     public static String leerToken(Context context){
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         return sp.getString("token",null);
-        //return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibHVpc3Byb2Zlc3NvckBnbWFpbC5jb20iLCJGdWxsTmFtZSI6Ikx1aXNwcm9mZXNvciBNZXJjYWRvUHJvZmVzb3IiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQcm9waWV0YXJpbyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMyIsImV4cCI6MTc2MTYwMzc4OCwiaXNzIjoiaW5tb2JpbGlhcmlhVUxQIiwiYXVkIjoibW9iaWxlQVBQIn0.AFl2ZID1Xfq8vmCKkYb3b29h9kzhMYEbrYS4xJdTrcg";
+        //return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoibHVpc3Byb2Zlc3NvckBnbWFpbC5jb20iLCJGdWxsTmFtZSI6Ikx1aXMgSmF2aWVyIE1lcmNhZG8iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJQcm9waWV0YXJpbyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMyIsImV4cCI6MTc2MTc2NjUyMCwiaXNzIjoiaW5tb2JpbGlhcmlhVUxQIiwiYXVkIjoibW9iaWxlQVBQIn0.vnlRKzWQycc3ZARgEowXcH5aZzpipiKtC_Fv-O4R14A";
+    }
+    public static void borrarToken(Context context){
+        SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.remove("token");
+        editor.apply();
     }
 }

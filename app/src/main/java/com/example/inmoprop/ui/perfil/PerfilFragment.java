@@ -61,6 +61,8 @@ public class PerfilFragment extends Fragment {
         vm.getErrTelefono().observe(getViewLifecycleOwner(), b.tvErrTelefono::setText);
         vm.getErrEmail().observe(getViewLifecycleOwner(), b.tvErrEmail::setText);
 
+        vm.getEnableBoton().observe(getViewLifecycleOwner(),b.btGuardar::setEnabled);
+        vm.getVerProgress().observe(getViewLifecycleOwner(),b.pbGuardar::setVisibility);
 
         //--Listener------------------------------------
         b.btEditar.setOnClickListener(v->{

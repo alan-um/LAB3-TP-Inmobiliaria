@@ -23,8 +23,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.inmoprop.R;
 import com.example.inmoprop.databinding.FragmentDetalleInmuebleBinding;
-import com.example.inmoprop.databinding.FragmentInmueblesBinding;
-import com.example.inmoprop.models.Inmueble;
 import com.example.inmoprop.request.ApiClient;
 
 public class DetalleInmuebleFragment extends Fragment {
@@ -66,7 +64,7 @@ public class DetalleInmuebleFragment extends Fragment {
             b.etIdInmueble.setText(i.getIdInmueble() + "");
             Glide.with(this)
                     .load(ApiClient.URLBASE + i.getImagen())
-                    .placeholder(R.drawable.logo_inmo_sierras)
+                    .placeholder(R.drawable.inmueble_null)
                     .error("null")
                     .into(b.imgInmueble);
             b.etDireccionInmueble.setText(i.getDireccion());
@@ -83,7 +81,7 @@ public class DetalleInmuebleFragment extends Fragment {
             b.imgInmueble.setImageURI(uri);
         });
         vm.getToast().observe(getViewLifecycleOwner(), s -> {
-            Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
         });
         vm.getErrId().observe(getViewLifecycleOwner(), b.tvErrIdInmueble::setText);
         vm.getErrImg().observe(getViewLifecycleOwner(), b.tvErrImgInmueble::setText);
@@ -96,6 +94,8 @@ public class DetalleInmuebleFragment extends Fragment {
         vm.getErrLatitud().observe(getViewLifecycleOwner(), b.tvErrLatitudInmueble::setText);
         vm.getErrLongitud().observe(getViewLifecycleOwner(), b.tvErrLongitudInmueble::setText);
 
+        vm.getEnableBoton().observe(getViewLifecycleOwner(),b.btGuardarInmueble::setEnabled);
+        vm.getVerProgress().observe(getViewLifecycleOwner(),b.pbGuardarInmueble::setVisibility);
 
         //Listener---------
         b.cbDisponibleInmueble.setOnClickListener(v -> {
@@ -108,8 +108,6 @@ public class DetalleInmuebleFragment extends Fragment {
             }
         });
         b.btGuardarInmueble.setOnClickListener(v -> {
-            //b.etIdInmueble.setText(i.getIdInmueble()+"");
-            //b.etDuenioInmueble.setText(i.getDuenio().getNombre()+" "+i.getDuenio().getApellido());
             vm.crearInmueble(b.etDireccionInmueble.getText().toString(),
                     b.etTipoInmueble.getText().toString(),
                     b.etUsoInmueble.getText().toString(),

@@ -1,5 +1,6 @@
 package com.example.inmoprop.ui.inmuebles;
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class InmueblesFragment extends Fragment {
             GridLayoutManager glm = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
             b.rvListaInmueble.setLayoutManager(glm);
             b.rvListaInmueble.setAdapter(inmuebleAdapter);
+            b.pbListaInmueble.setVisibility(View.GONE);
         });
         vm.getToast().observe(getViewLifecycleOwner(), s -> {
             Toast.makeText(getContext(), s, Toast.LENGTH_LONG).show();
@@ -53,6 +55,8 @@ public class InmueblesFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        b.rvListaInmueble.setLayoutManager(null);
+        b.pbListaInmueble.setVisibility(View.VISIBLE);
         b = null;
     }
 }

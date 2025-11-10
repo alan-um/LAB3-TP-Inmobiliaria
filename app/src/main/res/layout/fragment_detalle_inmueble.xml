@@ -11,6 +11,19 @@
         android:layout_height="wrap_content"
         tools:context=".ui.inmuebles.DetalleInmuebleFragment">
 
+        <ProgressBar
+            android:id="@+id/pbGuardarInmueble"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/btGuardarInmueble"
+            app:layout_constraintEnd_toEndOf="@+id/btGuardarInmueble"
+            app:layout_constraintStart_toStartOf="@+id/btGuardarInmueble"
+            app:layout_constraintTop_toTopOf="@+id/btGuardarInmueble" />
+
         <TextView
             android:id="@+id/tvDireccionInmueble"
             android:layout_width="match_parent"

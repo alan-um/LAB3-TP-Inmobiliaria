@@ -45,7 +45,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.Inmueb
         holder.tvPrecio.setText("$ "+i.getValor());
         Glide.with(context)
                 .load(ApiClient.URLBASE+i.getImagen())
-                .placeholder(null)
+                .placeholder(R.drawable.inmueble_null)
                 .error("null")
                 .into(holder.img);
         holder.itemView.setOnClickListener(v->{

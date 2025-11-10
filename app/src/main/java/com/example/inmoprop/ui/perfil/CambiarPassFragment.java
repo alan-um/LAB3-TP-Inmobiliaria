@@ -43,6 +43,8 @@ public class CambiarPassFragment extends Fragment {
         vm.getErrNuevaPass().observe(getViewLifecycleOwner(), b.tvErrNuevaPass::setText);
         vm.getErrRepitePass().observe(getViewLifecycleOwner(), b.tvErrRepitePass::setText);
 
+        vm.getEnableBoton().observe(getViewLifecycleOwner(),b.btGuardar::setEnabled);
+        vm.getVerProgress().observe(getViewLifecycleOwner(),b.pbGuardar::setVisibility);
 
         b.btGuardar.setOnClickListener(v-> {
             String a = b.etActualPass.getText().toString().trim();
